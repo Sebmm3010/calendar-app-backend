@@ -4,7 +4,7 @@ const jwtGenerator = (uid, name) => {
     const payload = { uid, name };
     try {
         const token = jwt.sign(payload, process.env.SECRET_KEY, {
-            expiresIn: '24h',
+            expiresIn: '2h',
         });
         return token;
     } catch (err) {

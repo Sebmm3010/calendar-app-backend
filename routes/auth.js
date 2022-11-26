@@ -7,7 +7,8 @@
 const { Router } = require("express");
 const router = Router();
 const { check } = require('express-validator');
-const { validarCapos } = require("../middlewares/validarCampos");
+const { validarCampos, validarJwt } = require("../middlewares");
+
 const {
     login,
     crearUser,
@@ -23,7 +24,7 @@ router.post('/',
         check('email', 'Solo se acepta el formato emal **@**.com').isEmail(),
         check('password', 'La constraseña es obligatoria').not().isEmpty(),
         check('password', 'La constraseña debe de tener almenos 5 caracteres').isLength({ min: 5 }),
-        validarCapos
+        validarCampos
     ], login);
 
 // Registrar usuario
@@ -34,11 +35,11 @@ router.post('/new',
         check('email', 'Solo se acepta el formato emal **@**.com').isEmail(),
         check('password', 'La constraseña es obligatoria').not().isEmpty(),
         check('password', 'La constraseña debe de tener almenos 5 caracteres').isLength({ min: 5 }),
-        validarCapos
+        validarCampos
     ], crearUser);
 
 // Renovar Token
-router.get('/renew', renewToken);
+router.get('/renew', validarJwt,renewToken);
 
 
 module.exports = router;
