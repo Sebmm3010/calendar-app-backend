@@ -18,4 +18,4 @@ const UsuarioSchema= Schema({
     }
 });
 
-module.exports= model( 'Usario', UsuarioSchema );
+module.exports= model( 'Usuario', UsuarioSchema );
