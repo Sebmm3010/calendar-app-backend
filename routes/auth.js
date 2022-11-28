@@ -5,7 +5,6 @@
 */
 
 const { Router } = require("express");
-const router = Router();
 const { check } = require('express-validator');
 const { validarCampos, validarJwt } = require("../middlewares");
 
@@ -15,7 +14,8 @@ const {
     renewToken
 } = require("../controllers/auth.controller");
 
-
+// Router
+const router = Router();
 
 // Loguear
 router.post('/',
